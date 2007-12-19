@@ -1,0 +1,173 @@
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<style type="text/css">
+table {
+	font-size: 1em;
+}
+
+div,address,ol,ul,li,option,select {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+p {
+	margin: 0px;
+}
+
+body {
+	padding: 0px;
+	margin: 0px;
+}
+
+h6 {
+	font-size: 10pt
+}
+
+h5 {
+	font-size: 11pt
+}
+
+h4 {
+	font-size: 12pt
+}
+
+h3 {
+	font-size: 13pt
+}
+
+h2 {
+	font-size: 14pt
+}
+
+h1 {
+	font-size: 16pt
+}
+
+blockquote {
+	padding: 10px;
+	border: 1px #DDDDDD dashed
+}
+
+a img {
+	border: 0
+}
+
+body {
+	font-family: Verdana;
+	font-size: 10.0pt;
+	line-height: normal;
+	background-color: #ffffff;
+}
+</style>
+</head>
+<body revision="dcjhzpc3_13f6zqvd:162">
+<h1><b>Cooperative Tree</b></h1>
+<h2>Functional Spec</h2>
+The
+<b>Cooperative Tree</b>
+Project aim to develop an organization helper application around a
+shared tree data structure. It can be usefull for event scheduling
+(movies, restaurant, party) and project managing.
+<br>
+The application is based on a client server model.
+<br>
+Users will interact with each other though a shared data structure.
+<br>
+<br><br>
+1. Each user can propose ideas to other user by creating or adding them
+as
+<b>"Idea nodes"</b>
+into a
+<b>tree data structure</b>
+.
+<br>
+2. An idea node can be
+<b>refined by appending sub idea nodes</b>
+&nbsp; to it.
+<br>
+<strike>4. An idea node can be appended to many other idea
+nodes. It allow to not duplicate information when needed. It implies
+that an IdeaNode can't has itself has child or sub Child.</strike>
+For next version
+<br>
+5. If a user agrees an other user's idea-node he
+<b>can vote for it</b>
+, each
+<b>vote has the same weight</b>
+.
+<br>
+7. User can propose
+<b>counter idea-nodes</b>
+for a given idea-node. A new
+<b> "competitive node" then replace the first idea</b>
+. This competitive node then contains the first and all the counter
+ideas and the counter idea.
+<br>
+8. To find out that as been decide so far, a
+<b>validation policy</b>
+as to be choosen. This validation policy will be used to compute if an
+idea node will be present in the
+<b>final validated tree</b>
+.
+<br>
+9. In the
+<b>default validation policy</b>
+, only idea node with
+<b>at least one vote</b>
+is validated. For idea nodes
+<b>belonging to a competitive node</b>
+, only the idea node with
+<b>the highest vote count is validated</b>
+. if two&nbsp; idea node have the same vote count, none of the idea
+nodes are validated.
+<br>
+10. An idea node contains :
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- a
+<b>title name</b>
+(short length), that is display in the tree, an represents briefly the
+meaning.
+<br>
+&nbsp;&nbsp;&nbsp; - a
+<b>description</b>
+(long length), that is display as a pop-up to have a accurate
+understanding of the meaning.
+<br>
+&nbsp;&nbsp;&nbsp; - the reference of the
+<b>creator</b>
+of the idea node.
+<br>
+&nbsp;&nbsp;&nbsp; - the reference of all user
+<b>who votes</b>
+this idea.
+<br>
+&nbsp;&nbsp;&nbsp; - the
+<b>total count</b>
+of votes for this idea-node
+<br>
+<br>
+<br>
+This is this the interface method that user can use :
+<br>
+<br>
+- Node appendNew(Node parent)
+<br>
+- Node insertNewBefore(Node parent,Node Brother)
+<br>
+- remove(Node)
+<br>
+- setName(Node node,String name)
+<br>
+- setCreator(Node node,String creator)
+<br>
+- setDescription(Node node,String description)
+<br>
+- vote(Node node,String voter)
+<br>
+- Node appendCompetitive(Node parent,Node targetNode)
+<br>
+- Node insertCompetitiveBefore(Node parent,Node targetNode)
+
+</body>
+</html>
