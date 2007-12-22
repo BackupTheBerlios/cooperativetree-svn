@@ -1,0 +1,136 @@
+<html>
+<head>
+</head>
+<body>
+<h1>Http Interface</h1>
+<table border="1">
+	<thead>
+		<tr>
+			<td>Url (http://host/cooprerativeTree/...)</td>
+			<td style="width:300px">description</td>
+			<td>parameters</td>
+			<td style="width:400px">returned values</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>append.do</td>
+			<td>append a new Idea Node as child of a parent Idea Node</td>
+			<td>
+			<ul>
+				<li>newNodeId  : id of the new Idea node</li>
+				<li>parentIdeaNodeId : id of the parent Idea node</li>
+			</ul>
+			</td>
+			<td>http code 200</td>
+		</tr>
+		<tr>
+			<td>appendCompetitive.do</td>
+			<td>add a competitive node to the targeted node. If the targeted was not a competitive node ,it is replaced by a new competitive node 
+	  which has two child : the targeted node and the new Node. If the targeted node was already in a competitive node,
+	 the new node is simply append to the competitive node.</td>
+			<td>
+			<ul>
+				<li>targetNodeId : the id of the targetNode that will be competitive</li>
+				<li>newNodeId : the id of the NewNode that will be competing with targetNode</li>
+			</ul>
+			</td>
+			<td>http code 200</td>
+		</tr>
+		<tr>
+			<td>create.do</td>
+			<td>create a new idea node</td>
+			<td>
+			</td>
+			<td>&lt;nodeId&gt;[nodeId]&lt;/nodeId&gt;</td>
+		</tr>
+		<tr>
+			<td>detach.do</td>
+			<td>detach an idea node from his parentNode</td>
+			<td>
+			<ul>
+				<li>targetNodeId : id of the</li>
+				<li>newNodeId : id of the</li>
+			</ul>
+			</td>
+			<td>http code 200</td>
+		</tr>
+		<tr>
+			<td>get.do</td>
+			<td>retrieve the Idea node object for a giver id and his childs</td>
+			<td>
+			<ul>
+				<li>nodeId :  id of the Idea node</li>
+			</ul>
+			</td>
+			<td><pre>&lt;IdeaNode&gt;<br>    &lt;IdeaNode&gt;&lt;/IdeaNode&gt;<br>    &lt;IdeaNode&gt;&lt;/IdeaNode&gt;<br>&lt;/IdeaNode&gt;</pre></td>
+		</tr>
+		<tr>
+			<td>insertBefore.do</td>
+			<td>insert a new Idea Node as previous brother of the brother Idea Node</td>
+			<td>
+			<ul>
+				<li>brotherNodeId : id of the brother Idea node</li>
+				<li>newNodeId : id of the new Idea node</li>
+			</ul>
+			</td>
+			<td>http code 200</td>
+		</tr>
+		<tr>
+			<td>listenTo.do</td>
+			<td>Blocking method that return when a one or many nodes have been modified</td>
+			<td>
+			<ul>
+				<li>nodeId : the list of node to listen to</li>
+			</ul>
+			</td>
+			<td><pre>&lt;nodeIds&gt;<br>  &lt;nodeId&gt;[nodeId]&lt;/nodeId&gt;<br>  &lt;nodeId&gt;[nodeId]&lt;/nodeId&gt;<br>&lt;/nodeIds&gt;</pre></td>
+		</tr>
+		<tr>
+			<td>setDescription.do</td>
+			<td>set the description of the node</td>
+			<td>
+			<ul>
+				<li>nodeId : id of the Idea node to modify</li>
+				<li>description : the description of the node</li>
+			</ul>
+			</td>
+			<td>http code 200</td>
+		</tr>
+		<tr>
+			<td>setName.do</td>
+			<td>set the name of the node : the short string display to the user</td>
+			<td>
+			<ul>
+				<li>nodeId : id of the Idea node to modify</li>
+				<li>name : the name of the node</li>
+			</ul>
+			</td>
+			<td>http code 200</td>
+		</tr>
+		<tr>
+			<td>vote.do</td>
+			<td>set a vote to this node</td>
+			<td>
+			<ul>
+				<li>nodeId : id of the Idea node to vote for</li>
+			</ul>
+			</td>
+			<td>http code 200</td>
+		</tr>
+		<tr>
+			<td>unVote.do</td>
+			<td>unset a vote to this node</td>
+			<td>
+			<ul>
+				<li>nodeId : id of the Idea node to remove vote</li>
+				
+			</ul>
+			</td>
+			<td>http code 200</td>
+		</tr>
+	</tbody>
+
+</table>
+</body>
+</html>
