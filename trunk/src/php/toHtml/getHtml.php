@@ -3,8 +3,9 @@
 $xslt = new XSLTProcessor();
 
 // Chargement du fichier XML
-$xml = new domDocument();
-$xml -> load('../get.php?nodeId=2');
+$xmlDoc = new domDocument();
+include '../get.inc';
+$xmlDoc -> loadXML($xml);
 
 // Chargement du fichier XSL
 $xsl = new domDocument();
@@ -14,6 +15,6 @@ $xsl -> load('xmlNodeToHtml.xslt');
 $xslt -> importStylesheet($xsl);
 
 // Transformation et affichage du résultat
-echo $xslt -> transformToXml($xml);
+echo $xslt -> transformToXml($xmlDoc);
 
 ?>

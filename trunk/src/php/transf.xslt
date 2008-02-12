@@ -1,15 +1,12 @@
-<?php
-echo '<?xml version="1.0" encoding="UTF-8" ?>';
-echo "\n";
- ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:template match="/root">
-			<xsl:apply-templates select="node"/>
+    <xsl:template match="/root">ok
+			<xsl:apply-templates />
     </xsl:template>
     
 	
-	<xsl:template match="node">
+	<xsl:template match="IdeaNode">
     <div><xsl:value-of select="name()"/></div>
 	</xsl:template>
 </xsl:stylesheet>
