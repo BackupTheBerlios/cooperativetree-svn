@@ -1,0 +1,9 @@
+
+#resultContainer {border : 1px solid #FAF;height:400px;width:100%;}
+
+.ideaNodeTitle {
+	border : 1px solid #FAF;
+	-moz-border-radius: 8px;
+	padding:3px;
+	margin:3px;
+} 

@@ -5,7 +5,7 @@
 		<xsl:apply-templates />
     </xsl:template>
     
-	<xsl:template match ="IdeaNode" >
+	<xsl:template match ="IdeaNode2" >
         <table class="element" cellspacing="0" cellpadding="0">
 			<tbody>
 				<tr>
@@ -20,17 +20,6 @@
 	                                      <td class="elementName">
 	                                          <div><xsl:value-of select="@title"/></div>
 	                                      </td>
-	                                      <td class="attributesButton">
-	                                          <div>[]</div>
-	                                      </td>
-	                                      <xsl:for-each select="attribute::*">
-									<td class="attribute">
-									    <span>
-	                                              <span class="attributeName" ><xsl:value-of select="name()"/></span>
-	                                              <span class="attributeValue"><xsl:value-of select="."/></span>
-	                                          </span>
-									</td>
-								    </xsl:for-each>
 	                                  </tr>
 							</tbody>								
 						</table>
@@ -38,7 +27,7 @@
 	             </tr>
 	             <tr>
 					<td>
-						<table cellspacing="0" cellpadding="0" style="padding-left:10px">
+						<table cellspacing="0" cellpadding="0" style="padding-left:20px;margin-left:20px">
 							<tbody  class="elementChild">
 							<xsl:apply-templates select="*"></xsl:apply-templates>
 							</tbody>
@@ -48,5 +37,21 @@
 			</tbody>
 		</table>
     </xsl:template>
+    
+    <xsl:template match ="IdeaNode" >
+        <table class="element" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+					<td>
+						<div class="ideaNodeTitle"><xsl:value-of select="@title"/></div>
+					</td>
+					<td>
+						<xsl:apply-templates />	
+					</td>
+	             </tr>
+			</tbody>
+		</table>
+    </xsl:template>
+	
 	
 </xsl:stylesheet>

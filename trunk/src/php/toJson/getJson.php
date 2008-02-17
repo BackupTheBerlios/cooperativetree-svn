@@ -9,7 +9,7 @@ $xmlDoc -> loadXML('<?xml version="1.0" encoding="UTF-8" ?>'.getNodeAsXml($_GET[
 
 // Chargement du fichier XSL
 $xsl = new domDocument();
-$xsl -> load('xmlNodeToHtml.xslt');
+$xsl -> load('xmlNodeToJson.xslt');
 
 // Import de la feuille XSL
 $xslt -> importStylesheet($xsl);
