@@ -39,11 +39,24 @@
     </xsl:template>
     
     <xsl:template match ="IdeaNode" >
-        <table class="element" cellspacing="0" cellpadding="0">
+        <table class="ieadNode" cellspacing="0" cellpadding="0">
 			<tbody>
 				<tr>
 					<td>
-						<div class="ideaNodeTitle"><xsl:value-of select="@title"/></div>
+						<div class="ideaNodeDetails">
+						<table >
+						<tbody>
+						<tr>
+							<td><span class="smallInfo">id:<xsl:value-of select="@id"/></span></td>
+							<td class="ideaNodeTitle">
+								<xsl:value-of select='@title'/>
+							</td>
+							
+						</tr>
+						</tbody>
+						</table>
+						</div>
+						
 					</td>
 					<td>
 						<xsl:apply-templates />	
