@@ -36,5 +36,26 @@ function getNodeAsXml($nodeId){
     return $xml;
 }
 
+function getNodeAsHtml($nodeId){
+	return getNodeAs($nodeId,'toHtml/xmlNodeToHtml.xslt');
+}
 
+function getNodeAs($nodeId,$xsltFileName){
+	
+	$xslt = new XSLTProcessor();
+
+	// Chargement du fichier XML
+	$xmlDoc = new domDocument();	
+	$xmlDoc -> loadXML('<?xml version="1.0" encoding="UTF-8" ?>'.getNodeAsXml($nodeId));
+
+	// Chargement du fichier XSL
+	$xsl = new domDocument();
+	$xsl -> load($xsltFileName);
+
+	// Import de la feuille XSL
+	$xslt -> importStylesheet($xsl);
+
+	// Transformation et affichage du résultat
+	return $xslt -> transformToXml($xmlDoc);
+}
 ?>
