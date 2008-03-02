@@ -4,7 +4,7 @@ include 'dbConnect.inc';
 
 function retrieveChilds($nodeId){
 	global $db;	
-	$result = mysql_db_query($db,"select child from  node_link where parent = $nodeId");
+	$result = mysql_db_query($db,"select child from  node_link where parent = $nodeId order by `order`");
 	$i = 0;
 	$childs[] = array();
 	while($row=mysql_fetch_row($result)){
