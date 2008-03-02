@@ -4,7 +4,8 @@ window.onload = function(){
 	var node = new IdeaNode();
 	node.nodeId = 1;
 	node.setBackendUrls({
-		get:"../../server/php/getJson.php"
+		get:"../../server/php/getJson.php",
+		setTitle:"../../server/php/setTitle.php"
 	});
 	var h = node.getHtml();	
 	container.appendChild(h);
