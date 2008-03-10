@@ -16,6 +16,17 @@ IdeaNode.prototype = {
 				me.switchToEditable();
 			}
 		}
+		this.ids.titleField.onmouseover=function(){
+			me.displayMenu();
+		}
+	},
+	
+	displayMenu:function(){
+		this.menuManager.show(this.ids.titleField);
+	},
+	
+	setMenuManager:function(menuManager){
+		this.menuManager = menuManager;
 	},
 	
 	getHtml:function(){
@@ -83,6 +94,7 @@ IdeaNode.prototype = {
 		for(var i=0,n=json.childs.length;i<n;i++){
 			var node = new IdeaNode();
 			node.setBackendUrls(this.backendUrls);
+			node.setMenuManager(this.menuManager);
 			node.loadFromJson(json.childs[i]);
 			this.ids.childContainer.appendChild(node.html);
 		}
@@ -102,6 +114,8 @@ IdeaNode.prototype = {
       				e("span","idField").att("class","ideaNodeId").add(t("empty"))
       			).add(
       				e("span","titleField").att("class","ideaNodeTitle").add(t("empty"))
+      			).add(
+      				e("span","menuContainer")
       			)	      			
     		).add(
       			e("td","childContainer")
