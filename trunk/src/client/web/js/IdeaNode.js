@@ -113,10 +113,11 @@ IdeaNode.prototype = {
       			e("td").add(
       				e("span","idField").att("class","ideaNodeId").add(t("empty"))
       			).add(
-      				e("span","titleField").att("class","ideaNodeTitle").add(t("empty"))
-      			).add(
+      				e("div","titleField").att("class","ideaNodeTitle").add(t("empty"))
+      			)
+      			/*.add(
       				e("span","menuContainer")
-      			)	      			
+      			)*/	      			
     		).add(
       			e("td","childContainer")
     		)

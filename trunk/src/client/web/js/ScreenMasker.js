@@ -34,7 +34,10 @@ ScreenMasker.prototype = {
 	},
 
 
-	mask:function(){
+	mask:function(opacity,color){
+		this.div.style.backgroundColor = color?color:"black"; 
+		//this.div.style.width="200px";
+		//this.div.style.width=YAHOO.util.Dom.getViewportWidth()-200+"px"; 
 		/*if(window.scrollY){
 
 			this.div.style.top = window.scrollY+"px"
@@ -45,7 +48,7 @@ ScreenMasker.prototype = {
 		}
 
 		this.div.style.display="block";
-		this.div.style.opacity="0.5";
+		this.div.style.opacity=(opacity?opacity:"0.5");
 		//var anim = new YAHOO.util.Anim(this.div, { opacity: { to: 0.1 } }, 0.3, YAHOO.util.Easing.easeOut)
 
 		//anim.onComplete.subscribe(function(){me.cal.hide();})
