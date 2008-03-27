@@ -1,7 +1,7 @@
 window.onload = function(){
 	var container = document.getElementById("resultContainer");
 
-	var menuManager = new MenuManager(document.getElementById("menuContainer"));
+	var ideaNodeManager = new IdeaNodeManager(document.getElementById("rootContainer"));
 
 
 	var node = new IdeaNode();
@@ -10,7 +10,7 @@ window.onload = function(){
 		get:"../../server/php/getJson.php",
 		setTitle:"../../server/php/setTitle.php"
 	});
-	node.setMenuManager(menuManager);
+	node.setIdeaNodeManager(ideaNodeManager);
 	var h = node.getHtml();	
 	container.appendChild(h);
 	node.load();
