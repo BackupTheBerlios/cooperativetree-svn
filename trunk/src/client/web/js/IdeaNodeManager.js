@@ -45,17 +45,7 @@ IdeaNodeManager.prototype = {
 	
 	
 	action:function(event,target){
-	
-		//  document.all.sauteur.style.left = window.event.clientX;
-  		//document.all.sauteur.style.top = window.event.clientY;
-		//if(evenement.modifiers & Event.ALT_MASK)
-  		//alert("Cliquement de souris et touche ALT appuyée!")
-	    // alert("Touche souris: " + evenement.which);
-	    // alert("Évènement: " + evenement.type);
-		//altKey, ctrlKey
-		//if(window.event.shiftKey)
-   		//alert("Une touche a été appuyée avec la touche majuscule!");
-   		
+
    		if(this.status=="default"){
    			if(event.type=="mouseover"){
    				this.status = "in";
@@ -74,7 +64,7 @@ IdeaNodeManager.prototype = {
    		}else if(this.status=="in"){   			
    			if(event.type=="click"){
    				this.clear();
-   				this.currentNode.switchToEditable();
+   				this.currentNode.switchToTitleEdit();
    			}/*else if(event.type=="mouseout"){
    				this.clear();
    				this.status="default";
@@ -102,7 +92,8 @@ IdeaNodeManager.prototype = {
 				this.pos[0]+this.currentNode.ids.titleField.clientWidth,
 				this.pos[1]+(this.currentNode.ids.titleField.clientHeight/2)-(this.descContainer.clientHeight/2)
 			]);*/
-			this.currentNode.showDescEdit();
+			//this.currentNode.showDescEdit();
+			this.currentNode.showDescField();
 		}else if(id=="edit"){
 			this.menuContainer.appendChild(this.editButton);
 			YAHOO.util.Dom.setXY(this.editButton,[
@@ -158,6 +149,9 @@ IdeaNodeManager.prototype = {
 	clear:function(){
 		if(this.currentNode){
 			this.currentNode.hideDesc();
+			this.currentNode.switchToTitleField();
+			
+			
 		}
 		while(this.menuContainer.firstChild){
 			this.menuContainer.removeChild(this.menuContainer.firstChild);

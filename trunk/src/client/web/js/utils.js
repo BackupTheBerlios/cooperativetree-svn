@@ -18,7 +18,7 @@ function ajaxLoad(url,args,callBack){
    xhr.send(null);   
 }
 
-function ajaxPut(url,args,callBack){
+function ajaxPost(url,args,callBack){
 	//var result;
 	var xhr = new XMLHttpRequest();
 	xhr.callBack = callBack;	
@@ -34,6 +34,9 @@ function ajaxPut(url,args,callBack){
          }
     }
    
-   xhr.open("PUT", url,  true); 
+   xhr.open("POST", url,  true);
+   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   xhr.setRequestHeader("Content-length", args.length);
+   xhr.setRequestHeader("Connection", "close"); 
    xhr.send(args);   
 }

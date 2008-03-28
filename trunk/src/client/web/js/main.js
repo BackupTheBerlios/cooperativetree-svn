@@ -6,12 +6,13 @@ window.onload = function(){
 
 	var node = new IdeaNode();
 	node.nodeId = 1;
-	node.setBackendUrls({
+	node.backendUrls = {
 		get:"../../server/php/getJson.php",
-		setTitle:"../../server/php/setTitle.php"
-	});
-	node.setIdeaNodeManager(ideaNodeManager);
-	var h = node.getHtml();	
+		setTitle:"../../server/php/setTitle.php",
+		setDesc:"../../server/php/setDesc.php"
+	};
+	node.ideaNodeManager=ideaNodeManager;
+	var h = node.html;	
 	container.appendChild(h);
 	node.load();
 	//alert("finish");
