@@ -2,8 +2,8 @@
 //$nodeId = $_POST['nodeId'];
 //$title = $_POST['title'];
 
-$nodeId = $_GET['nodeId'];
-$title = $_GET['title'];
+$nodeId = $_POST['nodeId'];
+$title = $_POST['title'];
 
 include 'dbConnect.inc';
 

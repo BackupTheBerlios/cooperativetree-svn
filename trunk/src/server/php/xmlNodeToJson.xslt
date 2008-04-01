@@ -7,7 +7,7 @@
     <xsl:template match ="IdeaNode" >
 	{'title':'<xsl:value-of select="@title"/>',
 	'nodeId':'<xsl:value-of select="@nodeId"/>',
-	 desc:"<xsl:value-of select="@title"/>",
+	 desc:"<xsl:value-of select="@description"/>",
 		childs:[<xsl:apply-templates />]
 	}
 	<xsl:if test="following-sibling::node()">,</xsl:if>
