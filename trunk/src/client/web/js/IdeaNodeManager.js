@@ -5,12 +5,12 @@ function IdeaNodeManager(container){
 IdeaNodeManager.prototype = {
 
 	
-	addPreviousButtonTemplate:e("span","previousButton").att("class","menuButton").add(t("addPrevious")),
+	/*addPreviousButtonTemplate:e("span","previousButton").att("class","menuButton").add(t("addPrevious")),
 	addNextButtonTemplate:e("span","nextButton").att("class","menuButton").add(t("addNext")),
 	appendButtonTemplate:e("span","appendButton").att("class","menuButton").add(t("append")),
 	deleteButtonTemplate:e("span","deleteButton").att("class","menuButton").add(t("del")),
 	helpButtonTemplate:e("span","helpButton").att("class","menuButton").add(t("click to edit")),
-	
+	*/
 	
 	
 	init:function(container){
@@ -30,16 +30,42 @@ IdeaNodeManager.prototype = {
 		this.htmlInstances = {};
 		
 		this.editButton = e("span","editButton").att("class","menuButton").add(t("edit")).generateElements(document).elements;
-		this.editButton.style.zIndex = this.zIndexButton;
-		this.editButton.onclick = function(){
-			alert('ok');
+		this.editButton.onmouseover = function(){
+			//me.status="edit";
+			//me.clear();
+			me.currentNode.hideDesc();
+			me.detectPosition(me.currentNode.ids.titleField);
+			me.display("addPreviousBrotherNode");
+			me.display("addNextBrotherNode");
+			me.display("appendChildNode");
+			me.display("removeNode");
 		}
 		
 		this.descContainer=e("div","descContainer").att("class","descContainer").add(t("no Description")).generateElements(document).elements;
-		this.descContainer.style.zIndex = this.zIndexButton;
 		this.descContainer.onclick = function(){
 			alert('ok');
 		}
+		
+		this.addPreviousBrotherNode=e("span").att("class","menuButton").add(t("addPrevious")).generateElements(document).elements;
+		this.addPreviousBrotherNode.onclick = function(){
+			alert('addPreviousBrotherNode');
+		}
+		
+		this.addNextBrotherNode=e("span").att("class","menuButton").add(t("addNext")).generateElements(document).elements;
+		this.addNextBrotherNode.onclick = function(){
+			alert('addNextBrotherNode');
+		}
+		
+		this.appendChildNode=e("span").att("class","menuButton").add(t("appendChild")).generateElements(document).elements;
+		this.appendChildNode.onclick = function(){
+			alert('appendChildNode');
+		}
+		
+		this.removeNode=e("span").att("class","menuButton").add(t("removeNode")).generateElements(document).elements;
+		this.removeNode.onclick = function(){
+			alert('removeNode');
+		}
+		
 		
 	},
 	
@@ -71,6 +97,8 @@ IdeaNodeManager.prototype = {
    				this.currentNode = target;
    			}*/
    			
+   		}else if(this.status=="edit"){
+   		
    		}
 	
 	},
@@ -100,10 +128,35 @@ IdeaNodeManager.prototype = {
 				this.pos[0]-this.editButton.clientWidth+2,
 				this.pos[1]+(this.currentNode.ids.titleField.clientHeight/2)-(this.editButton.clientHeight/2)
 			]);
+		}else if(id=="addPreviousBrotherNode"){
+			this.menuContainer.appendChild(this.addPreviousBrotherNode);
+			YAHOO.util.Dom.setXY(this.addPreviousBrotherNode,[
+				this.pos[0]+(this.currentNode.ids.titleField.clientWidth/2)-(this.addPreviousBrotherNode.clientWidth/2),
+				this.pos[1]-16
+			]);
+		}else if(id=="addNextBrotherNode"){
+			this.menuContainer.appendChild(this.addNextBrotherNode);
+			YAHOO.util.Dom.setXY(this.addNextBrotherNode,[
+				this.pos[0]+(this.currentNode.ids.titleField.clientWidth/2)-(this.addNextBrotherNode.clientWidth/2),
+				this.pos[1]+26
+			]);
+		}else if(id=="appendChildNode"){
+			this.menuContainer.appendChild(this.appendChildNode);
+			YAHOO.util.Dom.setXY(this.appendChildNode,[
+				this.pos[0]+(this.currentNode.ids.titleField.clientWidth+2),
+				this.pos[1]+6
+			]);
+		}else if(id=="removeNode"){
+			this.menuContainer.appendChild(this.removeNode);
+			this.removeNode.style.zIndex="520";
+			YAHOO.util.Dom.setXY(this.removeNode,[
+				this.pos[0]-this.removeNode.clientWidth+2,
+				this.pos[1]-this.removeNode.clientHeight//(this.currentNode.ids.titleField.clientHeight/2)//
+			]);
 		}
 	
 	},
-		
+		/*
 	showEditButton:function(){
 		if(!this.delButton){
 			this.delButton = this.deleteButtonTemplate.generateElements(document).elements;
@@ -134,7 +187,7 @@ IdeaNodeManager.prototype = {
 		YAHOO.util.Dom.setXY(this.addPreviousButton,[this.pos[0]+(this.element.clientWidth/2)-(this.addPreviousButton.clientWidth/2),this.pos[1]-16]);
 		YAHOO.util.Dom.setXY(this.addNextButton,[this.pos[0]+(this.element.clientWidth/2)-(this.addNextButton.clientWidth/2),this.pos[1]+26]);
 		YAHOO.util.Dom.setXY(this.appendButton,[this.pos[0]+(this.element.clientWidth+2),this.pos[1]+6]); 
-	},
+	},*/
 	
 	hide:function(){
 		

@@ -85,7 +85,11 @@ IdeaNode.prototype = {
 	
 	
 	setTitle:function(title){
-		this.titleTextNode.data = title;
+		if(!title){
+			this.titleTextNode.data = "empty";
+		}else{
+			this.titleTextNode.data = title;
+		}
 		this.titleEdit.value=title;
 	},
 	getTitle:function(){
@@ -159,14 +163,19 @@ IdeaNode.prototype = {
 						
 		});
 	},
+	
+	addNodeBackend:function(action){
+		var me = this;
+		ajaxPost(me.backendUrls.addNode,"action="+action+"&nodeId="+this.nodeId,function(text){				
+						
+		});
+	},
+	
 	rollBackDesc:function(){
 		this.descEdit.value = this.descField.firstChild.data;
 	},
 	
-	
-	
-	
-	
+		
 	load:function(){
 		if(this.nodeId){
 			var me = this;

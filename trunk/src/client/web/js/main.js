@@ -10,6 +10,7 @@ window.onload = function(){
 		get:"../../server/php/getJson.php",
 		setTitle:"../../server/php/setTitle.php",
 		setDesc:"../../server/php/setDesc.php"
+		addNode:"../../server/php/addNode.php"
 	};
 	node.ideaNodeManager=ideaNodeManager;
 	var h = node.html;	
