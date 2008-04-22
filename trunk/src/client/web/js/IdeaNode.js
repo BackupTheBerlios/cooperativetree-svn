@@ -164,12 +164,101 @@ IdeaNode.prototype = {
 		});
 	},
 	
-	addNodeBackend:function(action){
+	createNodeBackend:function(callBack){
+		var me = this;
+		ajaxPost(me.backendUrls.createNode,"",function(text,args){				
+			var obj
+			try{
+				 obj = eval('('+text+')');
+				 if(obj.nodeId==0){		
+					alert("error while creating new ideaNode");
+				}else{
+					args(obj.nodeId);
+				}
+			}catch(e){
+				alert(e+" error while  evaluating :"+text);
+			}
+		},callBack);
+	},
+	
+	insertBeforeNodeBackend:function(nodeId,callBack){
+	
+	},
+	
+	appendChildNodeBackend:function(newNodeId,callBack){
+		var me = this;
+		ajaxPost(me.backendUrls.appendChildNode
+			,"newNodeId="+newNodeId+"&parentNodeId="+me.nodeId
+			,function(text,args){				
+				var result;
+				try{
+					result = eval('('+text+')');
+				}catch(e){
+					alert("error evaluating :"+text);
+				}						
+				if(result){						
+					args();
+				}else{
+					alert("business error while appending :"+text);
+				}
+			}
+			,callBack
+		);
+	},
+	
+	
+	
+	detachNodeBackend:function(callBack){
+		var me = this;
+		ajaxPost(me.backendUrls.detachNode
+			,"nodeId="+me.nodeId
+			,function(text,args){				
+				var result;
+				try{
+					result = eval('('+text+')');
+				}catch(e){
+					alert("error evaluating :"+text);
+				}	
+
+				if(result){						
+					args();
+				}else{
+					alert("business error while appending :"+text);
+				}
+			}
+			,callBack
+		);
+	},
+	
+	deleteNodeBackend:function(callBack){
+		var me = this;
+		ajaxPost(me.backendUrls.deleteNode
+			,"nodeId="+me.nodeId
+			,function(text,args){				
+				var result;
+				try{
+					result = eval('('+text+')');
+				}catch(e){
+					alert("error evaluating :"+text);
+				}						
+				if(result){						
+					args();
+				}else{
+					alert("business error while appending :"+text);
+				}
+			}
+			,callBack
+		);
+	},
+	
+	
+	
+	/*addNodeBackend:function(action){
 		var me = this;
 		ajaxPost(me.backendUrls.addNode,"action="+action+"&nodeId="+this.nodeId,function(text){				
 						
 		});
-	},
+	},*/
 	
 	rollBackDesc:function(){
 		this.descEdit.value = this.descField.firstChild.data;
@@ -184,7 +273,8 @@ IdeaNode.prototype = {
 			});
 		}
 	},
-	loadFromJson:function(json){
+	loadFromJson:function(json,parentNode){
+		this.parentNode = parentNode?parentNode:null;
 		this.setTitle(json.title);
 		//this.desc = json.desc;
 		this.descEdit.value = json.desc;
@@ -195,11 +285,55 @@ IdeaNode.prototype = {
 			var node = new IdeaNode();
 			node.backendUrls=this.backendUrls;
 			node.ideaNodeManager=this.ideaNodeManager;
-			node.loadFromJson(json.childs[i]);
+			node.loadFromJson(json.childs[i],this);
 			this.ids.childContainer.appendChild(node.html);
 		}
 		
 	},
+	
+	clearChilds:function(){
+		while(this.ids.childContainer.firstChild){
+			this.ids.childContainer.removeChild(this.ids.childContainer.firstChild);
+		}
+	},
+	
+	refresh:function(){
+		this.clearChilds();
+		this.load();
+	},
+	
+	
+	
+	addPreviousBrotherNode:function(){
+		var me = this;
+		this.createNodeBackend(function(nodeId){
+			me.insertBeforeNodeBackend(nodeId,function(){
+				me.parentNode.refresh();				
+			});	
+		});
+	},
+	
+	
+	appendChildNode:function(){
+		var me = this;
+		this.createNodeBackend(function(nodeId){			
+			me.appendChildNodeBackend(nodeId,function(){
+				me.refresh();		
+			});	
+		});
+	},
+	
+	deleteNode:function(){
+		var me = this;
+		this.detachNodeBackend(function(){
+			me.deleteNodeBackend(function(){
+				me.parentNode.refresh();
+			});
+		});
+	},
+	
+	
+	
 	
 	
 	

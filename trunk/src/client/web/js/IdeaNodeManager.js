@@ -48,7 +48,7 @@ IdeaNodeManager.prototype = {
 		
 		this.addPreviousBrotherNode=e("span").att("class","menuButton").add(t("addPrevious")).generateElements(document).elements;
 		this.addPreviousBrotherNode.onclick = function(){
-			alert('addPreviousBrotherNode');
+			me.currentNode.addPreviousBrotherNode();
 		}
 		
 		this.addNextBrotherNode=e("span").att("class","menuButton").add(t("addNext")).generateElements(document).elements;
@@ -58,12 +58,12 @@ IdeaNodeManager.prototype = {
 		
 		this.appendChildNode=e("span").att("class","menuButton").add(t("appendChild")).generateElements(document).elements;
 		this.appendChildNode.onclick = function(){
-			alert('appendChildNode');
+			me.currentNode.appendChildNode();
 		}
 		
 		this.removeNode=e("span").att("class","menuButton").add(t("removeNode")).generateElements(document).elements;
 		this.removeNode.onclick = function(){
-			alert('removeNode');
+			me.currentNode.deleteNode();
 		}
 		
 		

@@ -18,16 +18,16 @@ function ajaxLoad(url,args,callBack){
    xhr.send(null);   
 }
 
-function ajaxPost(url,args,callBack){
+function ajaxPost(url,args,callBack,callBackArgs){
 	//var result;
 	var xhr = new XMLHttpRequest();
 	xhr.callBack = callBack;	
-	xhr.args = args;
+	xhr.callBackArgs = callBackArgs;
 	xhr.onreadystatechange  = function(){ 
          if(xhr.readyState  == 4){
               if(xhr.status  == 200){
               //alert("receive response :"+xhr.responseText);
-                 xhr.callBack(xhr.responseText,xhr.args);
+                 xhr.callBack(xhr.responseText,xhr.callBackArgs);
               }else{
                  alert("error calling "+url);
               }
