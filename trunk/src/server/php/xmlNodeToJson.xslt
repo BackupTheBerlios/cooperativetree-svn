@@ -7,6 +7,7 @@
     <xsl:template match ="IdeaNode" >
 	{'title':'<xsl:value-of select="@title"/>',
 	'nodeId':'<xsl:value-of select="@nodeId"/>',
+	'order':'<xsl:value-of select="@order"/>',
 	 desc:"<xsl:value-of select="@description"/>",
 		childs:[<xsl:apply-templates />]
 	}
