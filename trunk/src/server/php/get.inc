@@ -1,6 +1,6 @@
 <?php
 
-include 'dbConnect.inc';
+
 
 function retrieveChilds($nodeId){
 	global $db;	
@@ -17,14 +17,15 @@ function retrieveChilds($nodeId){
 
 function getNodeAsXml($nodeId){	
 	global $db;
-	$result = mysql_db_query($db,"select * from  node where id = $nodeId");
+	$result = mysql_db_query($db,"select n.id id,n.title title,n.description description,nl.order from node n ,node_link nl where n.id = $nodeId and nl.child = $nodeId");
 	if($result){
 		
 		$id = mysql_result($result,0,"id");
 		$title = mysql_result($result,0,"title");
 		$desc = mysql_result($result,0,"description");
+		$order = mysql_result($result,0,"order");
 		mysql_free_result($result);
-		$xml .="<IdeaNode nodeId=\"$id\" title=\"$title\" description=\"$desc\" >";
+		$xml .="<IdeaNode nodeId=\"$id\" title=\"$title\" description=\"$desc\" order=\"$order\" >";
 			
 		$childs = retrieveChilds($id);
 		foreach($childs as $value){
